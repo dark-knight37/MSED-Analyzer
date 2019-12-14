@@ -22,7 +22,28 @@ The content of the *replication* folder is the following:
 To execute the batch, run *experiment.bat* under Windows or *experiment.sh* in a BASH terminal.
 
 ## How to build your experiment
-If you want to prepare your own configuration and run some experiments, you need to write a conf file. The structure 
+If you want to prepare your own sensor configuration and run some experiments, you need to write a conf file. There is no formal grammar for the configuration files, yet. Three examples are used to show the tool features:
+
+### Plain model
+A plain configuration is a model representing simple KooN voting mechanisms on different sensors each of them characterized by its own error rate. Here you can find a simple configuration:
+
+'''
+// Experiments
+conf_0=3,4,A,B,C,D
+conf_1=2,3,A,B,C
+
+// Basic
+basic_0=A,0.05
+basic_1=B,0.03
+basic_2=C,0.025
+basic_3=D,0.01
+'''
+
+First you have to write a list of basic sensors (i.e., the *basic* section). Each row contains a characterization of a sensor:
+'''
+basic_*i*=*name*,*error_rate*
+'''
+
 
 ## Output of the experiments
 Once the 

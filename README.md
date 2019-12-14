@@ -27,7 +27,7 @@ If you want to prepare your own sensor configuration and run some experiments, y
 ### Plain model
 A plain configuration is a model representing simple KooN voting mechanisms on different sensors each of them characterized by its own error rate. Here you can find a simple configuration:
 
-'''
+```
 // Experiments
 conf_0=3,4,A,B,C,D
 conf_1=2,3,A,B,C
@@ -40,7 +40,7 @@ basic_3=D,0.01
 '''
 
 First you have to write a list of basic sensors (i.e., the *basic* section). Each row contains a characterization of a sensor:
-'''
+```
 basic_*i*=*name*,*error_rate*
 '''
 

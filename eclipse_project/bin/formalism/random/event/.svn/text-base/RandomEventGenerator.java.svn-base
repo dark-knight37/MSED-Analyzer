@@ -1,0 +1,9 @@
+package org.prgmdl.formalism.random.event;
+
+import sm.common.formalism.random.RandomGenerator;
+
+public abstract class RandomEventGenerator extends RandomGenerator implements EventGenerator {
+
+	public abstract boolean toss();
+	
+}

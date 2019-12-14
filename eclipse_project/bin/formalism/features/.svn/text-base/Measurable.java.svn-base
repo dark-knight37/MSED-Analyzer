@@ -1,0 +1,6 @@
+package org.prgmdl.formalism.features;
+
+
+public interface Measurable {
+
+}

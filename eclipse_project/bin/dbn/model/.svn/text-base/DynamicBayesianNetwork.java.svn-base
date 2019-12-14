@@ -1,0 +1,94 @@
+package org.prgmdl.dbn.model;
+
+import java.util.Hashtable;
+import java.util.Vector;
+
+import sm.common.bn.model.Arc;
+import sm.common.bn.model.BayesianNetwork;
+import sm.common.bn.model.Variable;
+import sm.common.formalism.core.Container;
+import sm.common.formalism.features.Analyzable;
+import sm.common.formalism.utils.LabelGenerator;
+
+public class DynamicBayesianNetwork extends BayesianNetwork implements Analyzable {
+	
+	public DynamicBayesianNetwork(String name) {
+		super(name);
+	}
+	
+	public DynamicBayesianNetwork() {
+		super();
+	}
+
+	public void addTimedArc(String name, Variable from, Variable to) {
+		PriorArc a = new PriorArc(name,from,to);
+		this.arcs.add(a);
+	}
+
+	public void addTimedArc(String name, String from, String to) {
+		Variable vFrom = this.getVariableByName(from);
+		Variable vTo = this.getVariableByName(to);
+		this.addTimedArc(name, vFrom, vTo);
+	}
+
+	public void addTimedArc(String from, String to) {
+		Variable vFrom = this.getVariableByName(from);
+		Variable vTo = this.getVariableByName(to);
+		this.addTimedArc(vFrom, vTo);
+	}
+
+	public void addTimedArc(Variable from, Variable to) {
+		String name = LabelGenerator.get("a");
+		this.addTimedArc(name,from,to);
+	}
+	
+	@Override
+	public String toSpecificFormat(Container c) {
+		BayesianNetwork flatlined = this.flatline();
+		return flatlined.toSpecificFormat(c);
+	}
+	
+	private BayesianNetwork flatline() {
+		// TODO 
+		return null;
+	}
+
+	public Vector<Variable> getParents(Variable v) {
+		Vector<Variable> retval = new Vector<Variable>();
+		for (Arc a: this.arcs) {
+			if (a.isIncomingTo(v)) {
+				retval.add((Variable) a.getFrom());
+			}
+		}
+		return retval;
+	}
+
+	public int getParentSpaceSize(Variable v) {
+		int retval = 1;
+		Vector<Variable> ps = this.getParents(v);
+		for (Variable p: ps) {
+			retval *= p.getValueNumber(); 
+		}
+		return retval;
+	}
+	
+	public Object clone() {
+		DynamicBayesianNetwork retval = new DynamicBayesianNetwork(this.name);
+		Hashtable<Variable,Variable> mapping = new Hashtable<Variable,Variable>();
+		for (Variable x: this.variables) {
+			Variable y = (Variable) x.clone(this);
+			retval.add(x);
+			mapping.put(x,y);
+		}
+		for (Arc i: this.arcs) {
+			Arc j = null; 
+			if (i instanceof PriorArc) {
+				j = new PriorArc(i.getName(),mapping.get(i.getFrom()),mapping.get(i.getTo()));
+			} else {
+				j = new Arc(i.getName(),mapping.get(i.getFrom()),mapping.get(i.getTo()));
+			}
+			retval.addArc(j);
+		}
+		return retval;
+	}
+}

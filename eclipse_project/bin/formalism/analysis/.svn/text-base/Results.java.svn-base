@@ -1,0 +1,5 @@
+package org.prgmdl.formalism.analysis;
+
+public interface Results {
+
+}

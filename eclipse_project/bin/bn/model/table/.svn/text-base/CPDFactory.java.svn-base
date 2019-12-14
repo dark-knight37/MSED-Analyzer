@@ -1,0 +1,19 @@
+package org.prgmdl.bn.model.table;
+
+import sm.common.bn.model.BayesianNetwork;
+import sm.common.bn.model.Variable;
+
+public class CPDFactory {
+	
+	public static CPD createCPD(Variable v, BayesianNetwork bn) {
+		CPD retval = null;
+		int pNum = bn.getParents(v).size();
+		if (pNum == 0) {
+			retval = new ConstantFunction(v,bn);
+		} else {
+			retval = new CPT(v,bn);
+		}
+		return retval;
+	}
+
+}

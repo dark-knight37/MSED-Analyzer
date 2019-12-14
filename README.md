@@ -22,28 +22,89 @@ The content of the *replication* folder is the following:
 To execute the batch, run *experiment.bat* under Windows or *experiment.sh* in a BASH terminal.
 
 ## How to build your experiment
-If you want to prepare your own sensor configuration and run some experiments, you need to write a conf file. There is no formal grammar for the configuration files, yet. Three examples are used to show the tool features:
+If you want to prepare your own sensor configuration and run some experiments, you need to write a configuration file. There is no formal grammar for the configuration files, yet. Three examples are used to show the tool features:
 
 ### Plain model
-A plain configuration is a model representing simple KooN voting mechanisms on different sensors each of them characterized by its own error rate. Here you can find a simple configuration:
+A *plain model* represents simple KooN voting mechanisms on different sensors each of them characterized by its own error rate. Here you can find a plain model [file](examples/plain.conf):
 
 ```
-// Experiments
-conf_0=3,4,A,B,C,D
-conf_1=2,3,A,B,C
-
 // Basic
 basic_0=A,0.05
 basic_1=B,0.03
 basic_2=C,0.025
 basic_3=D,0.01
-'''
+
+// Experiments
+conf_0=3,4,A,B,C,D
+conf_1=2,3,A,B,C
+```
 
 First you have to write a list of basic sensors (i.e., the *basic* section). Each row contains a characterization of a sensor:
 ```
 basic_*i*=*name*,*error_rate*
-'''
+```
 
+then you must write a list of configurations to express how the different sensors are combined into a majority voting mechianism. Each analysis must be formatted as the following:
+```
+conf_*i*=*k*,*n*,*1st sensor name*,...,*n-th sensor name*
+```
+You can use sensor replicas in a configuration (i.e., by simply using a sensor more than once in a configuration). In this case, you are specifying two physically distinct sensors of the same type).
+
+### External model
+An *external model* is able to represent the dependency of one or more sensors on external, environmental disturbances. In such a cases, a sensor is affected by multiplying its error rate by a correction factor. In case estimating the correction factor is not possible with the confidence needed by a safety analysis, a *-* can be used to specify the worst case (error rate is 0.5).
+
+The user can customize the model by specifying for each sensor and for each affecting external disturbance a specific correction factor. Here you can find an external model [file](examples/external.conf):
+
+```
+// External
+ext_0=E1,0.2
+ext_1=E2,0.05
+
+// Basic
+basic_0=A,0.05,E1(3)
+basic_1=B,0.03,E2(-)
+basic_2=C,0.025,E1(3),E2(3)
+basic_3=D,0.01
+
+...
+```
+
+The first section to specify is the external section. Each row specifyies an external disturbance (e.g., high temperature, moisture, etc.). It follows this pattern:
+```
+ext_*i*=*name*,*occurrence_probability*
+```
+
+Then sensor description can be improved by specifying, for each sensor, a list of affections:
+```
+basic_*i*=*name*,*error_rate*,*list of affections separated by commas*
+```
+each affection is specified as follows:
+ 
+```
+*name*(*correction factor*)
+```
+
+The *Experiment* section is unchanged. Please, note that by using correction factors between 0 and 1, you can model external conditions that boost the detection capabilities of a sensor. Even if possible, it is unuseful in safety analysis where conservative hypotheses rule.
+
+
+### Control model
+Furthermore, it is possible to model cases where additional sensors are added to the model to check the presence of the external disturbances. In such a cases, reputation of "ordinary" sensors can be varied according to an *updating factor*. The model is structured as [follows](examples/external.conf):
+
+```
+...
+// Control
+updt=0.5
+control_0=T1,E1,0.00001
+control_1=T2,E2,0.001
+```
+
+*updt* is the updating factor (number between 0 and 1). 
+
+```
+control_*i*=*name*,*disturbance*,*error rate*
+```
+
+The first three sections are unchanged.
 
 ## Output of the experiments
 Once the 
@@ -60,7 +121,6 @@ Feature requests are also welcome. Before opening a feature request, please take
 
 **Thanks a ton for helping me making better software.**
 
-
 ## Credits
-This software is build upon the following software libraries. Without them, building this software would be harder:
-* JavaBayes ver 0.346 - https://www.cs.cmu.edu/~javabayes/Home/ (modified without GUI)
+This software is build upon the following software library. Without it, building this software would be harder:
+* JavaBayes ver 0.346 - https://www.cs.cmu.edu/~javabayes/Home/ (modified without GUI).

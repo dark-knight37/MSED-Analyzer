@@ -1,0 +1,12 @@
+package org.prgmdl.formalism.random.dice;
+
+import sm.common.formalism.random.BareGenerator;
+
+/**
+ * @author Stefano Marrone
+ */
+public interface NumberGenerator extends BareGenerator {
+	
+	public int roll();
+
+}

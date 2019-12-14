@@ -1,0 +1,21 @@
+package org.prgmdl.dbn.analysis;
+
+import sm.common.bn.analysis.Observation;
+
+public class TimedObservation extends Observation {
+	
+	protected double time;
+	
+	public TimedObservation(String variable, String value, double tm) {
+		super(variable,value);
+		this.time = tm;
+	}
+
+	public double getTime() {
+		return this.time;
+	}
+
+	public void setTime(double time) {
+		this.time = time;
+	}
+}

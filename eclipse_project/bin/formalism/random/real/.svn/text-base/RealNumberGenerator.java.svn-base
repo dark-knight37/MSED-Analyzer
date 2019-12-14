@@ -1,0 +1,12 @@
+package org.prgmdl.formalism.random.real;
+
+import sm.common.formalism.random.BareGenerator;
+
+/**
+ * @author Stefano Marrone
+ */
+public interface RealNumberGenerator extends BareGenerator {
+	
+	public double roll();
+
+}

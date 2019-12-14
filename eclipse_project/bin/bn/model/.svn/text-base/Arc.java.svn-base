@@ -1,0 +1,10 @@
+package org.prgmdl.bn.model;
+
+import sm.common.formalism.core.Edge;
+
+public class Arc extends Edge {
+
+	public Arc(String name, Variable from, Variable to) {
+		super(name,from,to);
+	}
+}

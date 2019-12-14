@@ -1,0 +1,8 @@
+package org.prgmdl.formalism.features;
+
+import sm.common.formalism.core.Container;
+
+public interface Printable {
+
+	public String toSpecificFormat(Container c);
+}

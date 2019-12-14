@@ -14,9 +14,6 @@ The usage of smart-sensors in critical Cyber-Physical Systems (CPS) poses new ri
 ## License
 The software is licensed according to the GNU General Public License v3.0 (see License file).
 
-## People
-* Stefano Marrone - Università della Campania "Luigi Vanvitelli" (Italy)
-
 ## Credits
 This software is build upon the following software libraries. Without them, building this software would be harder:
 * JavaBayes ver 0.346 - https://www.cs.cmu.edu/~javabayes/Home/ (modified without GUI)

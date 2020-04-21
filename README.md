@@ -116,7 +116,7 @@ After the construction and the analysis of the BN models, the tool produces a CS
 * _hazard___probability_: the probability that the configuration does not sense a passage of a vehicle given its passage (that is the hazardous event in *the considered application*);
 * _unavail_: the probability that the configuration is not able to reach a quorum and than the system is not available; 
 * _executiontime(msec)_: time in milliseconds that the tool takes to solve the model one it is built;
-* _buildtime(msec)_: time in milliseconds that the tool takes to solve generate the modle from the configuration.
+* _buildtime(msec)_: time in milliseconds that the tool takes to solve generate the model from the input configuration.
 
 
 ## License

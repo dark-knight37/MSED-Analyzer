@@ -110,13 +110,13 @@ The first three sections are unchanged.
 After the construction and the analysis of the BN models, the tool produces a CSV formatted output that contains as many lines as the number of the tested experiments and the following columns:
 
 * _configuration_: list of the sensors present in the sensor configuration;
-* _K_: quorum number of the sensor to have a majority among the sensors;
+* _K_: needed number of the sensors to have a majority among the sensors;
 * _N_: cardinality of the list of sensors;
 * _test_: set of the values related to the external events tested in the experiments;
 * _hazard___probability_: the probability that the configuration does not sense a passage of a vehicle given its passage (that is the hazardous event in *the considered application*);
 * _unavail_: the probability that the configuration is not able to reach a quorum and than the system is not available; 
 * _executiontime(msec)_: time in milliseconds that the tool takes to solve the model one it is built;
-* buildtime(msec)_: time in milliseconds that the tool takes to solve generate the modle from the configuration.
+* _buildtime(msec)_: time in milliseconds that the tool takes to solve generate the modle from the configuration.
 
 
 ## License

@@ -3,7 +3,7 @@
 A Bayesian Network based tool for the safety evaluation in multi-\sensor event detection.
 
 ## Context
-The usage of smart-sensors in critical Cyber-Physical Systems (CPS) poses new risks and challenges in terms of dependability especially when low-cost COTS devices are employed instead of custom and high-dependable ones. In such applications, having an adaptive software systems able to choose the best configuration according to Safety Integrity Level (SIL) and other non-functional indices, is a must for such applications.
+The usage of smart-sensors in critical Cyber-Physical Systems (CPS) poses new risks and challenges in terms of dependability especially when low-cost COTS devices are employed instead of custom and high dependable ones. In such applications, having an adaptive software systems able to choose the best configuration according to Safety Integrity Level (SIL) and other non-functional indices, is a must for such applications.
 
 ## Objective
 This repository reports a prototypical version of a tool able to translate a textual configuration of sensing, voting and exclusions mechianisms into a formal probabilistic model in order to infer the SIL of the configuration. The fomalisms used are Bayesian Networks (BN) and some of their derivated ones (Dynamic Bayesian Networks, DBNs, and Time-Variant Dynamic Bayesian Networks, TV-DBNs).

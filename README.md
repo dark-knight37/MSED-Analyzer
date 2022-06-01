@@ -1,6 +1,6 @@
 # MSED-Analyzer
 
-A Bayesian Network based tool for the safety evaluation in multi sensor event detection.
+A Bayesian Network based tool for the safety evaluation in multi-\sensor event detection.
 
 ## Context
 The usage of smart-sensors in critical Cyber-Physical Systems (CPS) poses new risks and challenges in terms of dependability especially when low-cost COTS devices are employed instead of custom and high-dependable ones. In such applications, having an adaptive software systems able to choose the best configuration according to Safety Integrity Level (SIL) and other non-functional indices, is a must for such applications.
